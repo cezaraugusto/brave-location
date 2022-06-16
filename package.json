@@ -1,0 +1,46 @@
+{
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cezaraugusto/brave-location.git"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "bin": {
+    "brave-location": "bin.js"
+  },
+  "name": "brave-location",
+  "version": "0.0.0",
+  "description": "Approximates the current location of the Brave browser across platforms.",
+  "main": "module.js",
+  "author": {
+    "name": "Cezar Augusto",
+    "email": "boss@cezaraugusto.net",
+    "url": "https://cezaraugusto.net"
+  },
+  "scripts": {
+    "test": "jasmine"
+  },
+  "files": [
+    "module.js",
+    "bin.js",
+    "scan"
+  ],
+  "keywords": [
+    "brave",
+    "browser",
+    "spawn",
+    "location",
+    "process",
+    "guesstimate"
+  ],
+  "dependencies": {
+    "userhome": "^1.0.0",
+    "which": "^2.0.2"
+  },
+  "devDependencies": {
+    "jasmine": "^4.2.0",
+    "mock-require": "^3.0.3"
+  }
+}
