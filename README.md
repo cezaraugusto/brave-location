@@ -26,6 +26,15 @@ console.log(braveLocation())
 # /Applications/Brave Browser.app/Contents/MacOS/Brave Browser
 ```
 
+## Related projects
+
+* [chrome-location](https://github.com/hughsk/chrome-location)
+* [chrome-location2](https://github.com/cezaraugusto/chrome-location2) (like `chromium-location` with fallback support to Chromium)
+* [firefox-location](https://github.com/hughsk/firefox-location)
+* [edge-location](https://github.com/cezaraugusto/edge-location)
+* [vivaldi-location](https://github.com/jandrey/vivaldi-location)
+* [opera-location](https://github.com/jandrey/opera-location)
+
 ## License
 
 MIT (c) Cezar Augusto.
