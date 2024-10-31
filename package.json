@@ -36,7 +36,7 @@
     "guesstimate"
   ],
   "dependencies": {
-    "userhome": "^1.0.0",
+    "userhome": "^1.0.1",
     "which": "^2.0.2"
   },
   "devDependencies": {
