@@ -1,11 +1,25 @@
-[action-image]: https://github.com/cezaraugusto/brave-location/workflows/CI/badge.svg
-[action-url]: https://github.com/cezaraugusto/brave-location/actions?query=workflow%3ACI
-[npm-image]: https://img.shields.io/npm/v/brave-location.svg
-[npm-url]: https://npmjs.org/package/brave-location
+[action-image]: https://github.com/cezaraugusto/brave-location/actions/workflows/ci.yml/badge.svg?branch=main
+[action-url]: https://github.com/cezaraugusto/brave-location/actions
+[npm-version-image]: https://img.shields.io/npm/v/brave-location.svg?color=0971fe
+[npm-version-url]: https://www.npmjs.com/package/brave-location
+[npm-downloads-image]: https://img.shields.io/npm/dm/brave-location.svg?color=0971fe
+[npm-downloads-url]: https://www.npmjs.com/package/brave-location
 
-# brave-location [![workflow][action-image]][action-url] [![npm][npm-image]][npm-url]
+[![Version][npm-version-image]][npm-version-url] [![Downloads][npm-downloads-image]][npm-downloads-url] [![workflow][action-image]][action-url]
+
+# brave-location
 
 > Approximates the current location of the Brave browser across platforms.
+
+# Resolution order
+
+This module attempts to find Brave in the following channel order: stable/beta/nightly.
+
+- macOS: checks `/Applications` and `~/Applications` for `Brave Browser(.app)`, `Brave Browser Beta(.app)`, `Brave Browser Nightly(.app)` in that order.
+- Windows: checks `LOCALAPPDATA`, `PROGRAMFILES`, `PROGRAMFILES(X86)` for `BraveSoftware/Brave-Browser`, then `Brave-Browser-Beta`, then `Brave-Browser-Nightly` (`Application/brave.exe`).
+- Linux/other: resolves `brave-browser`, then `brave-browser-beta`, then `brave-browser-nightly` on `PATH`.
+
+Returns the first existing path, or `null` if none are found.
 
 # Usage
 

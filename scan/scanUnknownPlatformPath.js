@@ -1,13 +1,18 @@
 const which = require('which');
 
 module.exports = function scanUnknownPlatform () {
-  let browserPath = null
+  const candidates = [
+    'brave-browser',
+    'brave-browser-beta',
+    'brave-browser-nightly'
+  ]
 
-  try {
-    browserPath = which.sync('brave-browser');
-  } catch (err) {
-    browserPath = null;
+  for (const cmd of candidates) {
+    try {
+      const resolved = which.sync(cmd);
+      if (resolved) return resolved;
+    } catch (err) {}
   }
 
-  return browserPath
+  return null
 }
