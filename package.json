@@ -11,7 +11,7 @@
     "brave-location": "bin.js"
   },
   "name": "brave-location",
-  "version": "0.0.0",
+  "version": "2.0.0",
   "description": "Approximates the current location of the Brave browser across platforms.",
   "main": "module.js",
   "author": {
