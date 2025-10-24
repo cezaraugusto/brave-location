@@ -1,15 +1,15 @@
 [action-image]: https://github.com/cezaraugusto/brave-location/actions/workflows/ci.yml/badge.svg?branch=main
 [action-url]: https://github.com/cezaraugusto/brave-location/actions
-[npm-version-image]: https://img.shields.io/npm/v/brave-location.svg?color=0971fe
+[npm-version-image]: https://img.shields.io/npm/v/brave-location.svg?color=f26d21
 [npm-version-url]: https://www.npmjs.com/package/brave-location
 [npm-downloads-image]: https://img.shields.io/npm/dm/brave-location.svg?color=2ecc40
 [npm-downloads-url]: https://www.npmjs.com/package/brave-location
 
+> Approximates the current location of the Brave browser across platforms.
+
 # brave-location [![Version][npm-version-image]][npm-version-url] [![Downloads][npm-downloads-image]][npm-downloads-url] [![workflow][action-image]][action-url]
 
-<img alt="Brave" align="right" src="https://cdn.jsdelivr.net/gh/extension-js/media@db5deb23fbfa85530f8146718812972998e13a4d/browser_logos/svg/brave.svg" width="12%" />
-
-> Approximates the current location of the Brave browser across platforms.
+<img alt="Brave" align="right" src="https://cdn.jsdelivr.net/gh/extension-js/media@db5deb23fbfa85530f8146718812972998e13a4d/browser_logos/svg/brave.svg" width="10.5%" />
 
 * Finds Brave in the following channel order: `stable` / `beta` / `nightly`.
 * Supports macOS / Windows / Linux
@@ -17,7 +17,7 @@
 
 ## Support table
 
-This table lists the default locations where Brave is typically installed for each supported platform and channel. The package checks these paths (in order) and returns the first one found. If Brave is installed elsewhere, it may not be detected.
+This table lists the default locations where Brave is typically installed for each supported platform and channel. The package checks these paths (in order) and returns the first one found. 
 
 <table>
   <thead>
@@ -122,7 +122,7 @@ Returns the first existing path found, or `null` if none are found.
 **Via Node.js:**
 
 ```js
-// Returns the path to brave as a string.
+
 import braveLocation from "brave-location";
 
 console.log(braveLocation());
