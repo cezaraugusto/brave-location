@@ -151,10 +151,11 @@ As of this version, the default behavior is strict (Stable only). To search Beta
 ## Related projects
 
 - [chrome-location2](https://github.com/cezaraugusto/chrome-location2)
-- [firefox-location](https://github.com/hughsk/firefox-location)
 - [edge-location](https://github.com/cezaraugusto/edge-location)
-- [vivaldi-location](https://github.com/jandrey/vivaldi-location)
-- [opera-location](https://github.com/jandrey/opera-location)
+- [firefox-location2](https://github.com/cezaraugusto/firefox-location2)
+- [opera-location2](https://github.com/cezaraugusto/opera-location2)
+- [vivaldi-location2](https://github.com/cezaraugusto/vivaldi-location2)
+- [yandex-location2](https://github.com/cezaraugusto/yandex-location2)
 
 ## License
 
