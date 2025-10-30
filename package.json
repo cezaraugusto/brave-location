@@ -11,7 +11,7 @@
     "brave-location": "bin.js"
   },
   "name": "brave-location",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Approximates the current location of the Brave browser across platforms.",
   "homepage": "https://www.npmjs.com/package/brave-location",
   "main": "module.js",
