@@ -29,4 +29,18 @@ describe('brave-location', function () {
     expect(output.stdout).toBe(location)
     done()
   })
+
+  it('module: default is strict, allowFallback=true enables cascade', function () {
+    const scannerPath = process.platform === 'darwin'
+      ? '../scan/scanOsxPath'
+      : (process.platform === 'win32'
+        ? '../scan/scanWindowsPath'
+        : '../scan/scanUnknownPlatformPath')
+
+    mock(scannerPath, (allow) => allow ? 'FALLBACK' : 'STRICT')
+    const locate = mock.reRequire('../module')
+
+    expect(locate()).toBe('STRICT')
+    expect(locate(true)).toBe('FALLBACK')
+  })
 })

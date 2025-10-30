@@ -6,17 +6,20 @@ describe('brave-location fallbacks', function () {
     mock.stopAll()
   })
 
-  it('macOS: falls back to Beta then Nightly', function () {
+  it('macOS: strict returns null, fallback finds Beta', function () {
     mock('fs', {
       existsSync: (p) => p.includes('Brave Browser Beta.app')
     })
 
     const scanOsxPath = mock.reRequire('../scan/scanOsxPath')
-    const result = scanOsxPath()
-    expect(result).toContain('Brave Browser Beta.app')
+    const strictResult = scanOsxPath(false)
+    const fallbackResult = scanOsxPath(true)
+
+    expect(strictResult).toBeNull()
+    expect(fallbackResult).toContain('Brave Browser Beta.app')
   })
 
-  it('Windows: handles missing envs and finds Beta/Nightly', function () {
+  it('Windows: strict returns null; fallback finds Beta/Nightly', function () {
     const originalEnv = { ...process.env }
     delete process.env.PROGRAMFILES
     delete process.env['PROGRAMFILES(X86)']
@@ -27,15 +30,17 @@ describe('brave-location fallbacks', function () {
     })
 
     const scanWindowsPath = mock.reRequire('../scan/scanWindowsPath')
-    const result = scanWindowsPath()
+    const strictResult = scanWindowsPath(false)
+    const fallbackResult = scanWindowsPath(true)
 
     // restore env
     process.env = originalEnv
 
-    expect(result).toContain('Brave-Browser-Beta')
+    expect(strictResult).toBeNull()
+    expect(fallbackResult).toContain('Brave-Browser-Beta')
   })
 
-  it('Unknown/Linux: tries beta/nightly on PATH', function () {
+  it('Unknown/Linux: strict tries only stable; fallback tries beta/nightly on PATH', function () {
     let calls = []
     mock('which', {
       sync: (cmd) => {
@@ -46,9 +51,11 @@ describe('brave-location fallbacks', function () {
     })
 
     const scanUnknown = mock.reRequire('../scan/scanUnknownPlatformPath')
-    const result = scanUnknown()
-    expect(result).toBe('/usr/bin/brave-browser-beta')
-    expect(calls.slice(0, 2)).toEqual(['brave-browser', 'brave-browser-beta'])
+    const strictResult = scanUnknown(false)
+    const fallbackResult = scanUnknown(true)
+    expect(strictResult).toBeNull()
+    expect(fallbackResult).toBe('/usr/bin/brave-browser-beta')
+    expect(calls.slice(0, 3)).toEqual(['brave-browser', 'brave-browser', 'brave-browser-beta'])
   })
 })
 

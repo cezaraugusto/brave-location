@@ -11,13 +11,13 @@
 
 <img alt="Brave" align="right" src="https://cdn.jsdelivr.net/gh/extension-js/media@db5deb23fbfa85530f8146718812972998e13a4d/browser_logos/svg/brave.svg" width="10.5%" />
 
-* Finds Brave in the following channel order: `stable` / `beta` / `nightly`.
+* By default checks only `stable`. Optionally, can cascade to `beta` / `nightly`.
 * Supports macOS / Windows / Linux
 * Works both as an ES module or command-line tool
 
 ## Support table
 
-This table lists the default locations where Brave is typically installed for each supported platform and channel. The package checks these paths (in order) and returns the first one found. 
+This table lists the default locations where Brave is typically installed for each supported platform and channel. By default, only the Stable channel is checked. When fallback is enabled, the package checks these paths (in order) and returns the first one found.
 
 <table>
   <thead>
@@ -115,25 +115,37 @@ This table lists the default locations where Brave is typically installed for ea
   </tbody>
   </table>
 
-Returns the first existing path found, or `null` if none are found.
+Returns the first existing path found (given the selected channels), or `null` if none are found.
 
 ## Usage
 
-**Via Node.js:**
+**Via Node.js (strict by default):**
 
 ```js
 
 import braveLocation from "brave-location";
 
+// Strict (Stable only)
 console.log(braveLocation());
-// /Applications/Brave Browser.app/Contents/MacOS/Brave Browser
+// => "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser" or null
+
+// Enable fallback (Stable / Beta / Nightly)
+console.log(braveLocation(true));
+// => first found among Stable/Beta/Nightly or null
 ```
 
 **Via CLI:**
 
 ```bash
 npx brave-location
-# /Applications/Brave Browser.app/Contents/MacOS/Brave Browser
+# Strict (Stable only)
+
+npx brave-location --fallback
+# Enable cascade (Stable / Beta / Nightly)
+
+### Behavior change
+
+As of this version, the default behavior is strict (Stable only). To search Beta/Nightly as fallbacks, pass `true` to the Node API or use the `--fallback`/`-f` CLI flag.
 ```
 
 ## Related projects

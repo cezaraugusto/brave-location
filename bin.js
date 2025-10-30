@@ -2,4 +2,7 @@
 
 const braveLocation = require('./module')
 
-console.log(braveLocation())
+const argv = process.argv.slice(2)
+const allowFallback = argv.includes('--fallback') || argv.includes('-f')
+
+console.log(braveLocation(allowFallback))

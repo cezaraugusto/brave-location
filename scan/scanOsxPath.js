@@ -1,7 +1,7 @@
 const fs = require('fs')
 const userhome = require('userhome')
 
-module.exports = function scanOsxPath () {
+module.exports = function scanOsxPath (allowFallback = false) {
   const apps = [
     { app: 'Brave Browser.app', exec: 'Brave Browser' },
     { app: 'Brave Browser Beta.app', exec: 'Brave Browser Beta' },
@@ -11,8 +11,10 @@ module.exports = function scanOsxPath () {
   const systemBase = '/Applications'
   const userBase = userhome('Applications')
 
+  const channels = allowFallback ? apps : [apps[0]]
+
   const candidates = []
-  for (const { app, exec } of apps) {
+  for (const { app, exec } of channels) {
     candidates.push(`${systemBase}/${app}/Contents/MacOS/${exec}`)
     candidates.push(`${userBase}/${app}/Contents/MacOS/${exec}`)
   }

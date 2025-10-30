@@ -1,11 +1,13 @@
 const which = require('which');
 
-module.exports = function scanUnknownPlatform () {
-  const candidates = [
+module.exports = function scanUnknownPlatform (allowFallback = false) {
+  const candidatesAll = [
     'brave-browser',
     'brave-browser-beta',
     'brave-browser-nightly'
   ]
+
+  const candidates = allowFallback ? candidatesAll : [candidatesAll[0]]
 
   for (const cmd of candidates) {
     try {

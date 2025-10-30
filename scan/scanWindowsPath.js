@@ -1,18 +1,20 @@
 const fs = require('fs')
 const path = require('path')
 
-module.exports = function scanWindowsPath () {
+module.exports = function scanWindowsPath (allowFallback = false) {
   const prefixes = [
     process.env.LOCALAPPDATA,
     process.env.PROGRAMFILES,
     process.env['PROGRAMFILES(X86)']
   ].filter(Boolean)
 
-  const suffixes = [
+  const suffixesAll = [
     '\\BraveSoftware\\Brave-Browser\\Application\\brave.exe',
     '\\BraveSoftware\\Brave-Browser-Beta\\Application\\brave.exe',
     '\\BraveSoftware\\Brave-Browser-Nightly\\Application\\brave.exe'
   ]
+
+  const suffixes = allowFallback ? suffixesAll : [suffixesAll[0]]
 
   for (const prefix of prefixes) {
     for (const suffix of suffixes) {
