@@ -4,6 +4,9 @@ const mock = require('mock-require');
 const braveLocation = require('../module')
 
 describe('brave-location', function () {
+  afterEach(function () {
+    mock.stopAll()
+  })
   // Must have Brave installed. Commented as GitHub CI doesn't have it.
   // it('outputs brave path as a node module', function (done) {
   //   const location = braveLocation()
