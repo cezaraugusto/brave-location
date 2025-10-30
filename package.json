@@ -2,7 +2,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cezaraugusto/brave-location.git"
+    "url": "git+https://github.com/cezaraugusto/brave-location.git"
   },
   "engines": {
     "node": ">=10"
