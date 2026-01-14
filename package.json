@@ -5,7 +5,7 @@
     "url": "git+https://github.com/cezaraugusto/brave-location.git"
   },
   "name": "brave-location",
-  "version": "3.0.2",
+  "version": "3.0.4",
   "description": "Approximates the current location of the Brave browser across platforms.",
   "homepage": "https://www.npmjs.com/package/brave-location",
   "type": "module",
@@ -18,7 +18,9 @@
   },
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "bin": {
     "brave-location": "bin.cjs"
   },
