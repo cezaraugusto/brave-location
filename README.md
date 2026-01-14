@@ -124,6 +124,11 @@ Returns the first existing path found (given the selected channels), or `null` i
 ```js
 
 import braveLocation from "brave-location";
+import {
+  locateBraveOrExplain,
+  getInstallGuidance,
+  getBraveVersion
+} from "brave-location";
 
 // Strict (Stable only)
 console.log(braveLocation());
@@ -132,6 +137,21 @@ console.log(braveLocation());
 // Enable fallback (Stable / Beta / Nightly)
 console.log(braveLocation(true));
 // => first found among Stable/Beta/Nightly or null
+
+// Throw with a friendly guide when not found
+try {
+  const bin = locateBraveOrExplain({allowFallback: true});
+  console.log(bin);
+
+  // Cross-platform version (no exec by default)
+  console.log(getBraveVersion(bin)); // e.g. "132.1.72.123" or null
+
+  // Opt-in: allow executing the binary (Linux/other)
+  console.log(getBraveVersion(bin, {allowExec: true}));
+} catch (e) {
+  console.error(String(e));
+  // Or print getInstallGuidance() explicitly
+}
 ```
 
 **Via CLI:**
@@ -143,10 +163,33 @@ npx brave-location
 npx brave-location --fallback
 # Enable cascade (Stable / Beta / Nightly)
 
+# Respect environment overrides
+BRAVE_BINARY=/custom/path/to/brave npx brave-location
+
+# Print browser version (empty + exit code 2 if unavailable)
+npx brave-location --brave-version
+npx brave-location --browser-version
+
+# Opt-in: allow executing the binary to fetch version
+npx brave-location --browser-version --allow-exec
+
 ### Behavior change
 
 As of this version, the default behavior is strict (Stable only). To search Beta/Nightly as fallbacks, pass `true` to the Node API or use the `--fallback`/`-f` CLI flag.
 ```
+
+### Environment overrides
+
+If this environment variable is set and points to an existing binary, it takes precedence:
+
+- `BRAVE_BINARY`
+
+## API
+
+- `default export locateBrave(allowFallback?: boolean): string | null`
+- `locateBraveOrExplain(options?: boolean | { allowFallback?: boolean }): string`
+- `getBraveVersion(bin: string, opts?: { allowExec?: boolean }): string | null`
+- `getInstallGuidance(): string`
 
 ## Related projects
 
@@ -155,7 +198,7 @@ As of this version, the default behavior is strict (Stable only). To search Beta
 - [firefox-location2](https://github.com/cezaraugusto/firefox-location2)
 - [opera-location2](https://github.com/cezaraugusto/opera-location2)
 - [vivaldi-location2](https://github.com/cezaraugusto/vivaldi-location2)
-- [yandex-location2](https://github.com/cezaraugusto/yandex-location2)
+- [yandex-location](https://github.com/cezaraugusto/yandex-location)
 
 ## License
 
