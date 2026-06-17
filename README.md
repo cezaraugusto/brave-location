@@ -1,9 +1,9 @@
-[action-image]: https://github.com/cezaraugusto/brave-location/actions/workflows/ci.yml/badge.svg?branch=main
-[action-url]: https://github.com/cezaraugusto/brave-location/actions
-[npm-version-image]: https://img.shields.io/npm/v/brave-location.svg?color=f26d21
+[npm-version-image]: https://img.shields.io/npm/v/brave-location.svg?color=0971fe
 [npm-version-url]: https://www.npmjs.com/package/brave-location
 [npm-downloads-image]: https://img.shields.io/npm/dm/brave-location.svg?color=2ecc40
 [npm-downloads-url]: https://www.npmjs.com/package/brave-location
+[action-image]: https://github.com/cezaraugusto/brave-location/actions/workflows/ci.yml/badge.svg?branch=main
+[action-url]: https://github.com/cezaraugusto/brave-location/actions
 
 > Approximates the current location of the Brave browser across platforms.
 

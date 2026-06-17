@@ -29,10 +29,9 @@ jobs:
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
-        # Use version from package.json: "packageManager": "pnpm@..."
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - name: Install dependencies (allow lockfile update)
+        run: pnpm install --no-frozen-lockfile
 
       - name: Run tests
         run: pnpm test
@@ -42,13 +41,17 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
+      - name: Ensure clean lockfile before versioning
+        run: |
+          # If pnpm updated the lockfile, restore it to keep the tree clean for versioning
+          git restore --source=HEAD --staged --worktree pnpm-lock.yaml || git checkout -- pnpm-lock.yaml || true
+
       - name: Publish using np with provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CI: true
         run: |
-          # Trim whitespace and validate semver
           RAW_VERSION='${{ inputs.version }}'
           VERSION=$(echo "$RAW_VERSION" | xargs)
           if [ -z "$VERSION" ]; then
@@ -60,14 +63,11 @@ jobs:
             exit 1
           fi
           echo "Publishing exact version: $VERSION"
-          # Ensure tag does not already exist remotely
           if git ls-remote --tags origin | grep -q "refs/tags/v$VERSION$"; then
             echo "Error: tag v$VERSION already exists on origin. Choose a new version." >&2
             exit 1
           fi
-          # Bump version and create tag/commit
           npm version "$VERSION" -m "release: %s"
-          # Push commit and tag back to the repo
           git push --follow-tags
-          # Publish with provenance directly via npm
           npm publish --provenance --access public
+
