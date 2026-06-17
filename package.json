@@ -31,13 +31,13 @@
   },
   "scripts": {
     "build": "rslib build",
-    "check": "pnpm dlx @biomejs/biome@1.9.4 check --write",
     "dev": "rslib build --watch",
-    "format": "pnpm dlx @biomejs/biome@1.9.4 format --write",
     "pretest": "npm run build",
     "test": "vitest run",
     "prepublishOnly": "npm run build",
-    "publish:provenance": "np patch --no-tests --any-branch --yolo --message 'release: %s' --provenance"
+    "publish:provenance": "np patch --no-tests --any-branch --yolo --message 'release: %s' --provenance",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "engines": {
     "node": ">=16"
@@ -58,10 +58,11 @@
     "which": "^2.0.2"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
     "@rslib/core": "^0.6.9",
     "@types/node": "^22.8.1",
     "@types/which": "^3.0.4",
+    "eslint": "^10.5.0",
+    "eslint-config-auditor": "workspace:*",
     "np": "^10.0.0",
     "typescript": "^5.8.3",
     "vitest": "^3.1.3"
