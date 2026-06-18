@@ -24,7 +24,7 @@ type ScanUnknownPlatformPath = (
 ) => string | null
 
 describe('brave-location fallbacks', () => {
-  test('macOS: strict finds stable; fallback can find beta', async () => {
+  it('macOS: strict finds stable; fallback can find beta', async () => {
     const scanOsxPath = (await import('../src/scan-osx-path'))
       .default as unknown as ScanOsxPath
 
@@ -42,7 +42,7 @@ describe('brave-location fallbacks', () => {
     expect(typeof fallback === 'string' || fallback === null).toBe(true)
   })
 
-  test('Windows: strict null, fallback finds Nightly', async () => {
+  it('Windows: strict null, fallback finds Nightly', async () => {
     const scanWindowsPath = (await import('../src/scan-windows-path'))
       .default as unknown as ScanWindowsPath
 
@@ -70,7 +70,7 @@ describe('brave-location fallbacks', () => {
     ).toBe(true)
   })
 
-  test('Linux/other: strict only stable; fallback tries beta/nightly', async () => {
+  it('Linux/other: strict only stable; fallback tries beta/nightly', async () => {
     const scanUnknown = (await import('../src/scan-unknown-platform-path'))
       .default as unknown as ScanUnknownPlatformPath
 
