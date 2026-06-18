@@ -62,7 +62,7 @@
     "@types/node": "^22.8.1",
     "@types/which": "^3.0.4",
     "eslint": "^10.5.0",
-    "eslint-config-auditor": "workspace:*",
+    "eslint-config-auditor": "^2.0.0",
     "np": "^10.0.0",
     "typescript": "^5.8.3",
     "vitest": "^3.1.3"
