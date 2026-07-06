@@ -53,19 +53,48 @@ export default function locateBrave (
   return found
 }
 
-export function getInstallGuidance (): string {
-  return [
+export type InstallGuidanceStep = {
+  summary: string;
+  command: string;
+}
+
+export type InstallGuidanceOptions = {
+  // Caller-provided install steps replacing the default hint. Tools that
+  // manage their own browser installs pass their own installer commands
+  // here; with no steps the default guidance is kept.
+  steps?: InstallGuidanceStep[];
+}
+
+const DEFAULT_INSTALL_STEPS: InstallGuidanceStep[] = [
+  {
+    summary: 'Install Brave from the official site',
+    command: '(or install via your system package manager where available)'
+  }
+]
+
+export function getInstallGuidance (opts?: InstallGuidanceOptions): string {
+  const steps = opts?.steps?.length ? opts.steps : DEFAULT_INSTALL_STEPS
+
+  const lines = [
     "We couldn't find a Brave browser on this machine.",
     '',
     'To install one:',
-    '',
-    '1) Install Brave from the official site',
-    '   (or install via your system package manager where available)',
-    '',
-    'Re-run your command afterward and it will be detected automatically.',
-    '',
-    'Alternatively, set BRAVE_BINARY=/path/to/brave and re-run.'
-  ].join('\n')
+    ''
+  ]
+
+  steps.forEach((step, index) => {
+    lines.push(`${index + 1}) ${step.summary}`)
+    lines.push(`   ${step.command}`)
+    lines.push('')
+  })
+
+  lines.push(
+    'Re-run your command afterward and it will be detected automatically.'
+  )
+  lines.push('')
+  lines.push('Alternatively, set BRAVE_BINARY=/path/to/brave and re-run.')
+
+  return lines.join('\n')
 }
 
 export function locateBraveOrExplain (
