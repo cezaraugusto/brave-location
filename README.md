@@ -11,9 +11,15 @@
 
 <img alt="Brave" align="right" src="https://cdn.jsdelivr.net/gh/extension-js/media@db5deb23fbfa85530f8146718812972998e13a4d/browser_logos/svg/brave.svg" width="10.5%" />
 
-* By default checks only `stable`. Optionally, can cascade to `beta` / `nightly`.
-* Supports macOS / Windows / Linux
-* Works both as an ES module or command-line tool
+- By default checks only `stable`. Optionally can cascade to `beta` / `nightly`.
+- Supports macOS / Windows / Linux
+- Works both as an ES module or CommonJS
+
+## Installation
+
+```bash
+npm i brave-location
+```
 
 ## Support table
 
@@ -154,6 +160,13 @@ try {
 }
 ```
 
+**CommonJS:**
+
+```js
+const api = require('brave-location')
+const locateBrave = api.default || api
+```
+
 **Via CLI:**
 
 ```bash
@@ -172,10 +185,6 @@ npx brave-location --browser-version
 
 # Opt-in: allow executing the binary to fetch version
 npx brave-location --browser-version --allow-exec
-
-### Behavior change
-
-As of this version, the default behavior is strict (Stable only). To search Beta/Nightly as fallbacks, pass `true` to the Node API or use the `--fallback`/`-f` CLI flag.
 ```
 
 ### Environment overrides
@@ -194,10 +203,14 @@ If this environment variable is set and points to an existing binary, it takes p
 ## Related projects
 
 - [chrome-location2](https://github.com/cezaraugusto/chrome-location2)
+- [chromium-location](https://github.com/cezaraugusto/chromium-location)
 - [edge-location](https://github.com/cezaraugusto/edge-location)
 - [firefox-location2](https://github.com/cezaraugusto/firefox-location2)
+- [safari-location2](https://github.com/cezaraugusto/safari-location2)
 - [opera-location2](https://github.com/cezaraugusto/opera-location2)
 - [vivaldi-location2](https://github.com/cezaraugusto/vivaldi-location2)
+- [waterfox-location](https://github.com/cezaraugusto/waterfox-location)
+- [librewolf-location](https://github.com/cezaraugusto/librewolf-location)
 - [yandex-location](https://github.com/cezaraugusto/yandex-location)
 
 ## License
