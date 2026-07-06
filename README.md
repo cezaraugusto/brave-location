@@ -4,10 +4,12 @@
 [npm-downloads-url]: https://www.npmjs.com/package/brave-location
 [action-image]: https://github.com/cezaraugusto/brave-location/actions/workflows/ci.yml/badge.svg?branch=main
 [action-url]: https://github.com/cezaraugusto/brave-location/actions
+[npm-provenance-image]: https://img.shields.io/badge/provenance-verified-0971fe?logo=npm&logoColor=white
+[npm-provenance-url]: https://www.npmjs.com/package/brave-location
 
 > Approximates the current location of the Brave browser across platforms.
 
-# brave-location [![Version][npm-version-image]][npm-version-url] [![Downloads][npm-downloads-image]][npm-downloads-url] [![workflow][action-image]][action-url]
+# brave-location [![Version][npm-version-image]][npm-version-url] [![Downloads][npm-downloads-image]][npm-downloads-url] [![workflow][action-image]][action-url] [![Provenance][npm-provenance-image]][npm-provenance-url]
 
 <img alt="Brave" align="right" src="https://cdn.jsdelivr.net/gh/extension-js/media@db5deb23fbfa85530f8146718812972998e13a4d/browser_logos/svg/brave.svg" width="10.5%" />
 
